@@ -6,6 +6,7 @@ public abstract class Cliente {
     public String nombre;
     public String apellidos;
     public String email;
+
     
     // Constructor
     
@@ -14,6 +15,7 @@ public abstract class Cliente {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.email = email;
+
     }
     
     // Getters y Setters
@@ -49,6 +51,7 @@ public abstract class Cliente {
     public void setEmail(String email) {
         this.email = email;
     }
+
 
 
     

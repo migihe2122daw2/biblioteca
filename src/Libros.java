@@ -1,6 +1,6 @@
-import javax.naming.directory.SearchControls;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.*;
 
 public class Libros {
 
@@ -74,7 +74,7 @@ public class Libros {
 
     //metodos
 
-    public void PrestadoOno(ArrayList<Libros> libros){
+    public int PrestadoOno(ArrayList<Libros> libros){
         // Saber si el libro esta prestado o no
 
         if (cantidad == 0){
@@ -82,22 +82,9 @@ public class Libros {
         }else{
             System.out.println("Todos los libros con el titulo " + titulo + " estan disponibles");
 
-            // Si esta disponible, coger el isbn y preguntar si quiere prestarlo
-
-            getIsbn();
-            System.out.println("Quiere prestar el libro con el isbn " + isbn + "?");
-            System.out.println("1. Si");
-            System.out.println("2. No");
-            int opcion = Integer.parseInt(System.console().readLine());
-            if (opcion == 1){
-                System.out.println("El libro con el isbn " + isbn + " se ha prestado");
-                cantidad--;
-                Prestar(getIsbn(), libros);
-            }else if (opcion == 2){
-                System.out.println("El libro con el isbn " + isbn + " no se ha prestado");
-            }
-
+            return cantidad;
         }
+        return 0;
     }
 
     public void devolverPrestado(){
@@ -110,14 +97,16 @@ public class Libros {
 
         // Preguntar datos del usuario
 
-        System.out.println("Introduzca el nombre del usuario");
-        String nombre = System.console().readLine();
-        System.out.println("Introduzca el apellido del usuario");
-        String apellido = System.console().readLine();
-        System.out.println("Introduzca el DNI del usuario");
-        int dni = Integer.parseInt(System.console().readLine());
+        Scanner sc = new Scanner(System.in);
 
-        // Fecha de prestamo es hoy
+        System.out.println("Introduzca el nombre del usuario");
+        String nombre = sc.nextLine();
+        System.out.println("Introduzca el apellido del usuario");
+        String apellido = sc.nextLine();
+        System.out.println("Introduzca el DNI del usuario");
+        int dni = sc.nextInt();
+
+        // Fecha de prestamo es la actual
 
         Calendar fecha = Calendar.getInstance();
         int dia = fecha.get(Calendar.DAY_OF_MONTH);
@@ -140,21 +129,10 @@ public class Libros {
         System.out.println("Titulo: " + libro.getTitulo());
         System.out.println("Autor: " + libro.getAutor());
         System.out.println("ISBN: " + libro.getIsbn());
-        System.out.println("Cantidad: " + libro.getCantidad());
-        System.out.println("Precio: " + libro.getPrecio());
 
         // Decir que devuelva el libro en un mes
 
         System.out.println("El libro se tiene que devolver en un mes");
-
-        // Mostrar datos del libro
-
-        System.out.println("Titulo: " + libro.titulo);
-        System.out.println("Autor: " + libro.getAutor());
-        System.out.println("ISBN: " + libro.getIsbn());
-        System.out.println("Cantidad: " + libro.getCantidad());
-        System.out.println("Precio: " + libro.getPrecio());
-
 
         // Poner fecha de devolucion
 
@@ -168,10 +146,17 @@ public class Libros {
 
         System.out.println("Fecha de devolucion: " + diaDevolucion + "/" + mesDevolucion + "/" + anioDevolucion);
 
+        // Actualizar la cantidad del libro
+
+        libro.setCantidad(libro.getCantidad() - 1);
+
+
     }
 
-    public void Comprar(){ // ESTO SERA UN POLIMORFISMO
-        System.out.println("El vinilo se ha comprado");
+    public void Comprar(int isbnCompra, ArrayList<Libros> libros){ // ESTO SERA UN POLIMORFISMO
+
+
+
     }
 
     public Libros buscarLibro(ArrayList<Libros> libros, int isbn){ // ESTO SERA UN POLIMORFISMO
