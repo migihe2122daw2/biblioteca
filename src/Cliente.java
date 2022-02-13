@@ -17,7 +17,14 @@ public abstract class Cliente {
         this.email = email;
 
     }
-    
+
+    public Cliente(String nombre5, String apellidos5, String dni5, String email5) {
+        this.dni = dni5;
+        this.nombre = nombre5;
+        this.apellidos = apellidos5;
+        this.email = email5;
+    }
+
     // Getters y Setters
 
     public String getDni() {

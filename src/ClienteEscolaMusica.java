@@ -3,16 +3,19 @@ public class ClienteEscolaMusica extends Cliente {
     // Atributos
 
     public String nombreEscuela;
-    public String usuarioEscuela;
-    public String passwordEcuela;
+
 
     // Constructor
 
     public ClienteEscolaMusica() {
         this.nombreEscuela = nombreEscuela;
-        this.usuarioEscuela = usuarioEscuela;
-        this.passwordEcuela = passwordEcuela;
     }
+
+    public ClienteEscolaMusica(String dni9, String nombre9, String apellidos9, String email9, String escuela9) {
+        super(dni9, nombre9, apellidos9, email9);
+        this.nombreEscuela = escuela9;
+    }
+
 
     // Getters y Setters
 
@@ -22,22 +25,6 @@ public class ClienteEscolaMusica extends Cliente {
 
     public void setNombreEscuela(String nombreEscuela) {
         this.nombreEscuela = nombreEscuela;
-    }
-
-    public String getUsuarioEscuela() {
-        return usuarioEscuela;
-    }
-
-    public void setUsuarioEscuela(String usuarioEscuela) {
-        this.usuarioEscuela = usuarioEscuela;
-    }
-
-    public String getPasswordEcuela() {
-        return passwordEcuela;
-    }
-
-    public void setPasswordEcuela(String passwordEcuela) {
-        this.passwordEcuela = passwordEcuela;
     }
 
 

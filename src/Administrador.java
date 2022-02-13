@@ -10,6 +10,11 @@ public class Administrador extends Usuario {
         super();
     }
 
+    public Administrador(String admin, String admin1) {
+        this.usuario = admin;
+        this.contra = admin1;
+    }
+
     // Getters y Setters
 
     public String getUsuario() {
@@ -27,5 +32,9 @@ public class Administrador extends Usuario {
     public void setContra(String contra) {
         this.contra = contra;
     }
+
+    // Metodos
+
+
 
 }
