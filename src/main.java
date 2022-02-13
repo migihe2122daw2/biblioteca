@@ -9,7 +9,7 @@ public class main {
 
         // Primero creamos libros
 
-        // Creamos un libro
+        // Creamos un libro A
 
         ArrayList<Libros> libros = new ArrayList<Libros>();
 
