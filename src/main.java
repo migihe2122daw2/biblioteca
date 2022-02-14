@@ -412,11 +412,7 @@ public class main {
                                                     System.out.println("Introduce el id del vinilo que quieres eliminar: ");
                                                     int id6 = sc.nextInt();
                                                     sc.nextLine();
-                                                    for (Vinilos vinilo4 : vinilos) {
-                                                        if (vinilo4.getId() == id6) {
-                                                            vinilos.removeIf(vinilo5 -> vinilo5.getId() == id6);
-                                                        }
-                                                    }
+                                                    vinilos.removeIf(vinilo5 -> vinilo5.getId() == id6);
                                                     break;
                                                 case 5:
                                                     break;
@@ -437,7 +433,7 @@ public class main {
                                             sc.nextLine();
                                             switch (opcion4) {
                                                 case 1:
-                                                    int opcion5 = 0;
+                                                    int opcion5=0;
                                                     do {
                                                         System.out.println("1. Añadir un nuevo cliente");
                                                         System.out.println("2. Modificar un cliente");
