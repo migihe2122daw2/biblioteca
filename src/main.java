@@ -77,6 +77,7 @@ public class main {
         // Crear trabajadores
         ArrayList<Trabajador> trabajadores = new ArrayList<>();
         Trabajador trabajadores1 = new Trabajador(1234, "Alberto", "de la Capital", "capitalalberto@gmail.com", "encarregat", "encarregat");
+        Trabajador trabajadores2 = new Trabajador("4567", "Requena", "Molinas", "molinasrequena@gmail.com", "encarregat", "encarregat");
 
 
         // Swwitch case para el menu
