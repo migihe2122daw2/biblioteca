@@ -4,6 +4,8 @@ public class Trabajador extends Usuario{
     public String nombre;
     public String apellido;
     public String email;
+    public String usuario = "encarregat";
+    public String password = "encarregat";
 
     // Constructor
 
@@ -12,6 +14,8 @@ public class Trabajador extends Usuario{
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
+        this.usuario = usuario;
+        this.password = password;
     }
 
     // Getters y Setters
@@ -47,6 +51,23 @@ public class Trabajador extends Usuario{
     public void setEmail(String email){
         this.email = email;
     }
+
+    public String getUsuario(){
+        return usuario;
+    }
+
+    public void setUsuario(){
+        this.usuario = usuario;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+    public void setPassword(){
+        this.password = password;
+    }
+}
 
     // Metodos
 }
