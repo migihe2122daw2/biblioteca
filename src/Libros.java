@@ -104,14 +104,18 @@ public class Libros {
         System.out.println("Introduzca el apellido del usuario");
         String apellido = sc.nextLine();
         System.out.println("Introduzca el DNI del usuario");
-        int dni = sc.nextInt();
+        String dni = sc.nextLine();
 
         // Fecha de prestamo es la actual
 
         Calendar fecha = Calendar.getInstance();
         int dia = fecha.get(Calendar.DAY_OF_MONTH);
-        int mes = fecha.get(Calendar.MONTH);
+        fecha.add(Calendar.MONTH, 1);
+        int mes = fecha.get(Calendar.MONTH );
         int anio = fecha.get(Calendar.YEAR);
+
+
+
 
         // Mostrar datos del usuario
 
@@ -137,7 +141,7 @@ public class Libros {
         // Poner fecha de devolucion
 
         Calendar fechaDevolucion = Calendar.getInstance();
-        fechaDevolucion.add(Calendar.MONTH, 1);
+        fechaDevolucion.add(Calendar.MONTH, 2);
         int diaDevolucion = fechaDevolucion.get(Calendar.DAY_OF_MONTH);
         int mesDevolucion = fechaDevolucion.get(Calendar.MONTH);
         int anioDevolucion = fechaDevolucion.get(Calendar.YEAR);

@@ -169,6 +169,14 @@ public class main {
 
                             }
                         }
+
+                        if (encontrado == false) {
+                            System.out.println("El isbn no existe");
+                            System.out.println("Pulsa cualquier tecla para continuar");
+                            sc.nextLine();
+                            sc.nextLine();
+                        }
+
                     } while (opcion != 4);
                     break;
                 case 2:
@@ -437,11 +445,12 @@ public class main {
                                                     do {
                                                         System.out.println("1. Añadir un nuevo cliente");
                                                         System.out.println("2. Modificar un cliente");
-                                                        System.out.println("3. Consultar un cliente");
-                                                        System.out.println("4. Eliminar un cliente");
+                                                        System.out.println("3. Eliminar un cliente");
+                                                        System.out.println("4. Consultar un cliente");
                                                         System.out.println("5. Salir");
-                                                        opcion4 = sc.nextInt();
+                                                        opcion5 = sc.nextInt();
                                                         sc.nextLine();
+
                                                         switch (opcion5) {
                                                             case 1:
                                                                 System.out.println("Introduce el nombre del cliente: ");
@@ -493,9 +502,14 @@ public class main {
                                                                 String dni8 = sc.nextLine();
                                                                 for (ClientePrivado clientePrivado6 : clientesPrivados) {
                                                                     if (clientePrivado6.getDni().equals(dni8)) {
-                                                                        System.out.println(clientePrivado6);
+                                                                        // Mostramos los datos del cliente
+                                                                        System.out.println("Nombre: " + clientePrivado6.getNombre());
+                                                                        System.out.println("Apellidos: " + clientePrivado6.getApellidos());
+                                                                        System.out.println("Email: " + clientePrivado6.getEmail());
+                                                                        System.out.println("Codigo Postal: " + clientePrivado6.getCodigoPostal());
+                                                                        System.out.println("DNI: " + clientePrivado6.getDni());
+                                                                        System.out.println("\n\n");
                                                                     }
-
                                                                 }
                                                                 break;
                                                             case 5:
@@ -518,12 +532,13 @@ public class main {
                                                         sc.nextLine();
                                                         switch (opcion6) {
                                                             case 1:
-                                                                System.out.println("Introduce el DNI del cliente que quieres añadir: ");
-                                                                String dni9 = sc.nextLine();
+
                                                                 System.out.println("Introduce el nombre del cliente que quieres añadir: ");
                                                                 String nombre9 = sc.nextLine();
                                                                 System.out.println("Introduce los apellidos del cliente  que quieres añadir: ");
                                                                 String apellidos9 = sc.nextLine();
+                                                                System.out.println("Introduce el DNI del cliente que quieres añadir: ");
+                                                                String dni9 = sc.nextLine();
                                                                 System.out.println("Introduce el email del cliente que quieres añadir: ");
                                                                 String email9 = sc.nextLine();
                                                                 System.out.println("Introduce el nombre de la escuela del cliente que quieres añadir: ");
