@@ -12,6 +12,10 @@ public class ClientePrivado extends Cliente {
         CodigoPostal = Integer.parseInt(codigoPostal5);
     }
 
+    public ClientePrivado(String nombre, String apellido, String dni) {
+        super(nombre, apellido, dni);
+    }
+
     // Getters y Setters
 
     public int getCodigoPostal() {

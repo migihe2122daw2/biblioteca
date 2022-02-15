@@ -1,4 +1,5 @@
 
+import java.lang.annotation.Target;
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -78,7 +79,11 @@ public class main {
         ArrayList<Trabajador> trabajadores = new ArrayList<>();
         Trabajador trabajadores1 = new Trabajador("1234", "Alberto", "de la Capital", "capitalalberto@gmail.com", "encarregat", "encarregat");
         Trabajador trabajadores2 = new Trabajador("1235", "Juan", "Alberto", "albertojuan@gmail.com", "encarregat", "encarregat");
-        Trabajador trabajadores3 = new Trabajador("1236", "Pedro", "Sanchez", "sanchezpedro@gmail.com", "encarregat", "encarregat");
+        Trabajador trabajadores3 = new Trabajador("1236", "Carlos", "Fernandez", "fernandezcarlos@gmail.com", "encarregat", "encarregat");
+
+        trabajadores.add(trabajadores1);
+        trabajadores.add(trabajadores2);
+        trabajadores.add(trabajadores3);
 
         // Swwitch case para el menu
 
@@ -98,95 +103,136 @@ public class main {
 
             switch (opcion) {
                 case 1:
-                    do {
-                        System.out.println("Escoge un libro");
+                    System.out.println("Introduce tu nombre de usuario: ");
+                    String usuarioP = sc.next();
+                    System.out.println("Introduce tu contraseña: ");
+                    String contraseñaP = sc.next();
 
-                        // Iterator para recorrer el arraylist
-                        Iterator<Libros> it = libros.iterator();
-                        while (it.hasNext()) {
-                            Libros libro = it.next();
-                            System.out.println("ISBN: " + libro.getIsbn() + "\n Titulo: " + libro.getTitulo() + "\n Autor: " + libro.getAutor() + "\n");
-                        }
-                        System.out.println("Escribe el isbn del libro que quiere o 99 para salir: ");
-
-                        // Con el isbn buscamos el libro en el arraylist y lo pasamos a la clase libros al metodo PrestadoOno
-                        int isbn = sc.nextInt();
-                        if (isbn == 99) {
+                    // Comprobar que el usuario y contraseña son correctos
+                    boolean correcto = false;
+                    for (Trabajador trabajador : trabajadores) {
+                        if (trabajador.getUsuario().equals(usuarioP) && trabajador.getPassword().equals(contraseñaP)) {
+                            correcto = true;
                             break;
                         }
+                    }
 
-                        // Comprobar que el isb esta en el ArrayList
-                        boolean encontrado = false;
-                        Iterator<Libros> it2 = libros.iterator();
-                        while (it2.hasNext()) {
-                            Libros libro = it2.next();
-                            if (libro.getIsbn() == isbn) {
-                                encontrado = true;
+                    System.out.println(correcto);
+
+                    // Si el usuario y contraseña son correctos, acceder al menu
+                    if (correcto) {
+                        do {
+                            System.out.println("Escoge un libro");
+
+                            // Iterator para recorrer el arraylist
+                            Iterator<Libros> it = libros.iterator();
+                            while (it.hasNext()) {
+                                Libros libro = it.next();
+                                System.out.println("ISBN: " + libro.getIsbn() + "\n Titulo: " + libro.getTitulo() + "\n Autor: " + libro.getAutor() + "\n");
                             }
-                        }
+                            System.out.println("Escribe el isbn del libro que quiere o 99 para salir: ");
 
-                        for (Libros libro : libros) {
+                            // Con el isbn buscamos el libro en el arraylist y lo pasamos a la clase libros al metodo PrestadoOno
+                            int isbn = sc.nextInt();
+                            if (isbn == 99) {
+                                break;
+                            }
 
-                            if (libro.getIsbn() == isbn) {
-
-
-                                // Si el libro no esta prestado, se le puede presta
-                                if (libro.getCantidad() >= 1) {
-
-                                    int numeroEscape = 0;
-
-                                    do {
-
-                                        System.out.println("\nHay " + libro.getCantidad() + " libros disponibles");
-                                        System.out.println("Quieres prestar el libro? (1. Si, 2. No)");
-                                        int opcion2 = sc.nextInt();
-                                        if (opcion2 == 1) {
-                                            libro.Prestar(libro.getIsbn(), libros);
-                                            sc.nextLine();
-                                            System.out.println("Pulsa cualquier tecla para continuar");
-                                            sc.nextLine();
-                                            numeroEscape = 1;
-                                        } else if (opcion2 == 2) {
-                                            int numeroEscape2 = 0;
-                                            do {
-                                                System.out.println("Quieres comprar el libro? (1. Si, 2. No)");
-                                                int opcion3 = sc.nextInt();
-                                                if (opcion3 == 1) {
-                                                    libro.Comprar(libro.getIsbn(), libros);
-                                                } else if (opcion3 == 2) {
-                                                    System.out.println("No se ha realizado ninguna accion");
-                                                    numeroEscape2 = 1;
-                                                }
-                                            } while (numeroEscape2 == 0);
-                                            numeroEscape = 1;
-
-                                        }
-
-
-                                    } while (numeroEscape == 0);
-
-                                    break;
-                                } else if (libro.getCantidad() == 0) {
-                                    System.out.println("No hay libros disponibles");
-                                    // Limpiar el buffer
-                                    sc.nextLine();
-                                    System.out.println("Pulsa cualquier tecla para continuar");
-                                    sc.nextLine();
+                            // Comprobar que el isb esta en el ArrayList
+                            boolean encontrado = false;
+                            Iterator<Libros> it2 = libros.iterator();
+                            while (it2.hasNext()) {
+                                Libros libro = it2.next();
+                                if (libro.getIsbn() == isbn) {
+                                    encontrado = true;
                                 }
-
                             }
-                        }
 
-                        if (encontrado == false) {
-                            System.out.println("El isbn no existe");
-                            System.out.println("Pulsa cualquier tecla para continuar");
-                            sc.nextLine();
-                            sc.nextLine();
-                        }
+                            for (Libros libro : libros) {
 
-                    } while (opcion != 4);
-                    break;
+                                if (libro.getIsbn() == isbn) {
+
+
+                                    // Si el libro no esta prestado, se le puede presta
+                                    if (libro.getCantidad() >= 1) {
+
+                                        int numeroEscape = 0;
+
+                                        do {
+
+                                            System.out.println("\nHay " + libro.getCantidad() + " libros disponibles");
+                                            System.out.println("Quieres prestar el libro? (1. Si, 2. No)");
+                                            int opcion2 = sc.nextInt();
+                                            if (opcion2 == 1) {
+                                                libro.Prestar(libro.getIsbn(), libros,clientesPrivados);
+                                                sc.nextLine();
+                                                System.out.println("Pulsa cualquier tecla para continuar");
+                                                sc.nextLine();
+                                                numeroEscape = 1;
+                                            } else if (opcion2 == 2) {
+                                                int numeroEscape2 = 0;
+                                                do {
+                                                    System.out.println("Quieres comprar el libro? (1. Si, 2. No)");
+                                                    int opcion3 = sc.nextInt();
+                                                    if (opcion3 == 1) {
+                                                        libro.Comprar(libro.getIsbn(), libros);
+                                                    } else if (opcion3 == 2) {
+                                                        System.out.println("No se ha realizado ninguna accion");
+                                                        numeroEscape2 = 1;
+                                                    }
+                                                } while (numeroEscape2 == 0);
+                                                numeroEscape = 1;
+
+                                            }
+
+
+                                        } while (numeroEscape == 0);
+
+                                        break;
+                                    } else if (libro.getCantidad() == 0) {
+                                        System.out.println("No hay libros disponibles");
+                                        // Limpiar el buffer
+                                        sc.nextLine();
+                                        System.out.println("Pulsa cualquier tecla para continuar");
+                                        sc.nextLine();
+                                    }
+
+                                }
+                            }
+
+                            if (encontrado == false) {
+                                System.out.println("El isbn no existe");
+                                System.out.println("Pulsa cualquier tecla para continuar");
+                                sc.nextLine();
+                                sc.nextLine();
+                            }
+
+                        } while (opcion != 4);
+                        break;
+                    }else {
+                        System.out.println("No has iniciado sesion");
+                        System.out.println("Pulsa cualquier tecla para continuar");
+                        sc.nextLine();
+                        sc.nextLine();
+                        break;
+                    }
+
                 case 2:
+
+                    System.out.println("Introduce tu nombre de usuario");
+                    sc.nextLine();
+                    String nombreUsuario = sc.nextLine();
+                    System.out.println("Introduce tu contraseña");
+                    String contrasena = sc.nextLine();
+                    boolean encontradoE = false;
+                    for (Trabajador trabajador : trabajadores) {
+                        if (trabajador.getUsuario().equals(nombreUsuario) && trabajador.getPassword().equals(contrasena)) {
+                            encontradoE = true;
+                        }
+                    }
+
+                    if (encontradoE) {
+
                     do {
 
                         System.out.println("Escoge un vinilo: ");
@@ -241,6 +287,12 @@ public class main {
 
                     } while (opcion != 4);
                     break;
+                    } else {
+                        System.out.println("Usuario o contraseña incorrectos");
+                        System.out.println("Pulsa cualquier tecla para continuar");
+                        sc.nextLine();
+                        break;
+                    }
                 case 3:
                     int oportunidades = 3;
                     do {
