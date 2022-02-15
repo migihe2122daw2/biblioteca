@@ -76,13 +76,14 @@ public class main {
 
         // Crear trabajadores
         ArrayList<Trabajador> trabajadores = new ArrayList<>();
-        Trabajador trabajadores1 = new Trabajador(1234, "Alberto", "de la Capital", "capitalalberto@gmail.com", "encarregat", "encarregat");
-
+        Trabajador trabajadores1 = new Trabajador("1234", "Alberto", "de la Capital", "capitalalberto@gmail.com", "encarregat", "encarregat");
+        Trabajador trabajadores2 = new Trabajador("1235", "Juan", "Alberto", "albertojuan@gmail.com", "encarregat", "encarregat");
+        Trabajador trabajadores3 = new Trabajador("1236", "Pedro", "Sanchez", "sanchezpedro@gmail.com", "encarregat", "encarregat");
 
         // Swwitch case para el menu
 
         Scanner sc = new Scanner(System.in);
-        int opcion;z
+        int opcion;
         do {
 
             // Hacer login para acceder al menu

@@ -18,6 +18,17 @@ public class Trabajador extends Usuario{
         this.password = password;
     }
 
+    public Trabajador(String dni, String nombre, String apellido, String email, String usuario, String password){
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.usuario = usuario;
+        this.password = password;
+    }
+
+
+
     // Getters y Setters
 
     public String getDni(){
@@ -70,4 +81,4 @@ public class Trabajador extends Usuario{
 }
 
     // Metodos
-}
+
