@@ -117,8 +117,6 @@ public class main {
                         }
                     }
 
-                    System.out.println(correcto);
-
                     // Si el usuario y contraseña son correctos, acceder al menu
                     if (correcto) {
                         do {

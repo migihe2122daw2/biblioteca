@@ -110,8 +110,6 @@ public class Libros {
 
         for (int i = 0; i < clientePrivados.size(); i++){
             if (Objects.equals(clientePrivados.get(i).getDni(), dni)){
-                System.out.println(clientePrivados.get(i).getDni());
-                System.out.println(dni + " " + nombre + " " + apellido);
                 Calendar fecha = Calendar.getInstance();
                 int dia = fecha.get(Calendar.DAY_OF_MONTH);
                 fecha.add(Calendar.MONTH, 1);
@@ -160,9 +158,6 @@ public class Libros {
                 break;
             }else {
 
-                System.out.println(clientePrivados.get(i).getDni());
-
-                System.out.println(dni);
                 System.out.println("El cliente no existe");
 
                 // Crear un cliente nuevo
