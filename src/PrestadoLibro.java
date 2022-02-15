@@ -5,6 +5,7 @@ public class PrestadoLibro {
 
     //atributos
     private ClientePrivado CodigoPostal;
+    private ClientePrivado Nombre;
     private Libros titol;
     private Libros isbn;
     private Libros autor;
@@ -15,8 +16,9 @@ public class PrestadoLibro {
 
     //Constructor
 
-    public PrestadoLibro(ClientePrivado CodigoPostal, Libros titol, Libros isbn, Libros autor, Libros cantidad, Calendar f_entrada, Calendar f_devolucion, String multa) {
+    public PrestadoLibro(ClientePrivado CodigoPostal, ClientePrivado nombre, Libros titol, Libros isbn, Libros autor, Libros cantidad, Calendar f_entrada, Calendar f_devolucion, String multa) {
         this.CodigoPostal = CodigoPostal;
+        this.Nombre = nombre;
         this.titol = titol;
         this.isbn = isbn;
         this.autor = autor;
@@ -24,6 +26,10 @@ public class PrestadoLibro {
         this.f_entrada = f_entrada;
         this.f_devolucion = f_devolucion;
         this.multa = multa;
+    }
+
+    public PrestadoLibro(){
+
     }
 
 
@@ -120,5 +126,9 @@ public class PrestadoLibro {
         }
 
     }
+
+    // Metodo para guardar los libros que se han prestado
+
+
 }
 

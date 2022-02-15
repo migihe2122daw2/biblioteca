@@ -3,10 +3,11 @@ import java.util.Calendar;
 import java.util.*;
 
 public class Libros {
+    private static String titulo;
 
     // Atributos
 
-    private String titulo;
+
     private String autor;
     private int isbn;
     private int cantidad;
@@ -28,6 +29,10 @@ public class Libros {
         this.isbn = isbn;
         this.cantidad = cantidad;
         this.precio = precio;
+    }
+
+    public static String getTitulo(int isbn) {
+        return titulo;
     }
 
     // Getters y Setters
@@ -74,12 +79,12 @@ public class Libros {
 
     //metodos
 
-    public int PrestadoOno(ArrayList<Libros> libros){
+    public int PrestadoOno(ArrayList<Libros> libros) {
         // Saber si el libro esta prestado o no
 
-        if (cantidad == 0){
+        if (cantidad == 0) {
             System.out.println("Todos los libros con el titulo " + titulo + " estan prestados");
-        }else{
+        } else {
             System.out.println("Todos los libros con el titulo " + titulo + " estan disponibles");
 
             return cantidad;
@@ -87,12 +92,13 @@ public class Libros {
         return 0;
     }
 
-    public void devolverPrestado(){
+    public void devolverPrestado() {
         System.out.println("El vinilo se ha devuelto");
     }
 
-    public void Prestar(int isbnPrestado, ArrayList<Libros> libros, ArrayList<ClientePrivado> clientePrivados){
+    public String Prestar(int isbnPrestado, ArrayList<Libros> libros, ArrayList<ClientePrivado> clientePrivados) {
 
+        String prestamo = null;
         // Prestar el libro
 
         // Preguntar datos del usuario
@@ -108,15 +114,13 @@ public class Libros {
 
         // Buscar el cliente por el dni
 
-        for (int i = 0; i < clientePrivados.size(); i++){
-            if (Objects.equals(clientePrivados.get(i).getDni(), dni)){
+        for (int i = 0; i < clientePrivados.size(); i++) {
+            if (Objects.equals(clientePrivados.get(i).getDni(), dni)) {
                 Calendar fecha = Calendar.getInstance();
                 int dia = fecha.get(Calendar.DAY_OF_MONTH);
                 fecha.add(Calendar.MONTH, 1);
-                int mes = fecha.get(Calendar.MONTH );
+                int mes = fecha.get(Calendar.MONTH);
                 int anio = fecha.get(Calendar.YEAR);
-
-
 
 
                 // Mostrar datos del usuario
@@ -156,7 +160,7 @@ public class Libros {
 
                 libro.setCantidad(libro.getCantidad() - 1);
                 break;
-            }else {
+            } else {
 
                 System.out.println("El cliente no existe");
 
@@ -168,10 +172,8 @@ public class Libros {
                 Calendar fecha = Calendar.getInstance();
                 int dia = fecha.get(Calendar.DAY_OF_MONTH);
                 fecha.add(Calendar.MONTH, 1);
-                int mes = fecha.get(Calendar.MONTH );
+                int mes = fecha.get(Calendar.MONTH);
                 int anio = fecha.get(Calendar.YEAR);
-
-
 
 
                 // Mostrar datos del usuario
@@ -207,32 +209,37 @@ public class Libros {
 
                 System.out.println("Fecha de devolucion: " + diaDevolucion + "/" + mesDevolucion + "/" + anioDevolucion);
 
+                // Crear string con todos los datos
+
+                prestamo = "Nombre: " + nombre + "\nApellido: " + apellido + "\nDNI: " + dni + "\nFecha de prestamo: " + dia + "/" + mes + "/" + anio + "\nTitulo: " + libro.getTitulo() + "\nAutor: " + libro.getAutor() + "\nISBN: " + libro.getIsbn() + "\nEl libro se tiene que devolver en un mes" + "\nFecha de devolucion: " + diaDevolucion + "/" + mesDevolucion + "/" + anioDevolucion;
+
                 // Actualizar la cantidad del libro
+
+
 
                 libro.setCantidad(libro.getCantidad() - 1);
                 break;
             }
         }
 
-
-
-
-
-    }
-
-    public void Comprar(int isbnCompra, ArrayList<Libros> libros){ // ESTO SERA UN POLIMORFISMO
-
+        return nombre;
 
 
     }
 
-    public Libros buscarLibro(ArrayList<Libros> libros, int isbn){ // ESTO SERA UN POLIMORFISMO
-        for (int i = 0; i < libros.size(); i++){
-            if (libros.get(i).getIsbn() == isbn){
+    public void Comprar(int isbnCompra, ArrayList<Libros> libros) { // ESTO SERA UN POLIMORFISMO
+
+
+    }
+
+    public Libros buscarLibro(ArrayList<Libros> libros, int isbn) { // ESTO SERA UN POLIMORFISMO
+        for (int i = 0; i < libros.size(); i++) {
+            if (libros.get(i).getIsbn() == isbn) {
                 // DEVOLVER EL LIBRO CON TODOS SUS DATOS EN FORMATO STRING
                 return libros.get(i);
             }
         }
         return null;
     }
+
 }

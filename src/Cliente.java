@@ -66,7 +66,7 @@ public abstract class Cliente {
     }
 
 
+    public abstract Integer devolverLibro(int isbn);
 
-    
-    
+
 }

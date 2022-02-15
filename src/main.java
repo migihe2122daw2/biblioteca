@@ -136,7 +136,7 @@ public class main {
                                 break;
                             }
 
-                            // Comprobar que el isb esta en el ArrayList
+                            // Comprobar que el isbn esta en el ArrayList
                             boolean encontrado = false;
                             Iterator<Libros> it2 = libros.iterator();
                             while (it2.hasNext()) {
@@ -162,8 +162,16 @@ public class main {
                                             System.out.println("Quieres prestar el libro? (1. Si, 2. No)");
                                             int opcion2 = sc.nextInt();
                                             if (opcion2 == 1) {
-                                                libro.Prestar(libro.getIsbn(), libros,clientesPrivados);
+                                                String nombre = libro.Prestar(libro.getIsbn(), libros, clientesPrivados);
                                                 sc.nextLine();
+                                                // Leer valor de la variable de retorno del metodo Prestar
+
+                                                // Guardar el libro prestado en el metodo guardarLibro de ClientePrivado
+                                                for (ClientePrivado clientePrivado : clientesPrivados) {
+                                                    if (clientePrivado.getNombre().equals(nombre)) {
+                                                        clientePrivado.guardarLibro(libro);
+                                                    }
+                                                }
                                                 System.out.println("Pulsa cualquier tecla para continuar");
                                                 sc.nextLine();
                                                 numeroEscape = 1;
@@ -189,14 +197,21 @@ public class main {
                                         break;
                                     } else if (libro.getCantidad() == 0) {
                                         System.out.println("No hay libros disponibles");
-                                        // Limpiar el buffer
-                                        sc.nextLine();
+                                        // Decir quien tiene los libros prestados, mirar en el arraylist clientesPrivados
+                                        for (ClientePrivado clientesPrivado : clientesPrivados) {
+                                            if (clientesPrivado.comprobarLibro(isbn)) {
+                                                System.out.println("El cliente " + clientesPrivado.getNombre() + " tiene el libro prestado");
+                                            }
+
+                                        }
                                         System.out.println("Pulsa cualquier tecla para continuar");
                                         sc.nextLine();
                                     }
+                                    }
 
-                                }
+
                             }
+
 
                             if (encontrado == false) {
                                 System.out.println("El isbn no existe");
@@ -207,7 +222,7 @@ public class main {
 
                         } while (opcion != 4);
                         break;
-                    }else {
+                    } else {
                         System.out.println("No has iniciado sesion");
                         System.out.println("Pulsa cualquier tecla para continuar");
                         sc.nextLine();
@@ -231,60 +246,60 @@ public class main {
 
                     if (encontradoE) {
 
-                    do {
+                        do {
 
-                        System.out.println("Escoge un vinilo: ");
-                        // Iterator para recorrer el arraylist
+                            System.out.println("Escoge un vinilo: ");
+                            // Iterator para recorrer el arraylist
 
-                        Iterator<Vinilos> ite = vinilos.iterator();
-                        while (ite.hasNext()) {
-                            Vinilos vinilo = ite.next();
-                            System.out.println("ID: " + vinilo.getId() + "\n Nombre: " + vinilo.getNombre() + "\n Numero de canciones: " + vinilo.getCanciones() + "\n\n");
-                        }
-                        System.out.println("Escribe el ID del vinilo que quiere o 99 para salir: ");
-
-                        // Con el isbn buscamos el libro en el arraylist y lo pasamos a la clase libros al metodo PrestadoOno
-                        int id = sc.nextInt();
-                        if (id == 99) {
-                            break;
-                        }
-
-                        // Comprobar que el id esta en el ArrayList
-                        boolean encontrado = false;
-                        Iterator<Vinilos> ite2 = vinilos.iterator();
-                        while (ite2.hasNext()) {
-                            Vinilos vinilo = ite2.next();
-                            if (vinilo.getId() == id) {
-                                encontrado = true;
+                            Iterator<Vinilos> ite = vinilos.iterator();
+                            while (ite.hasNext()) {
+                                Vinilos vinilo = ite.next();
+                                System.out.println("ID: " + vinilo.getId() + "\n Nombre: " + vinilo.getNombre() + "\n Numero de canciones: " + vinilo.getCanciones() + "\n\n");
                             }
-                        }
+                            System.out.println("Escribe el ID del vinilo que quiere o 99 para salir: ");
 
-                        for (Vinilos vinilo : vinilos) {
-                            if (vinilo.getId() == id) {
-                                System.out.println("El vinilo seleccionado es: " + vinilo.getNombre());
-                                System.out.println("El vinilo tiene " + vinilo.getCanciones() + " canciones");
-                                System.out.println("El vinilo salio a la venta el dia: " + vinilo.getFechaLanzamiento());
-
-                                int numeroEscape = 0;
-                                do {
-                                    System.out.println("Quieres ver prestar el vinilo? (1. Si, 2. No)");
-                                    int opcion2 = sc.nextInt();
-                                    if (opcion2 == 1) {
-                                        vinilo.Prestar(vinilo.getId(), vinilos);
-                                        System.out.println("Pulsa cualquier tecla para continuar");
-                                        sc.nextLine();
-                                        numeroEscape = 1;
-                                    } else if (opcion2 == 2) {
-                                        System.out.println("No se ha realizado ninguna accion");
-                                        numeroEscape = 1;
-                                    }
-                                } while (numeroEscape == 0);
+                            // Con el isbn buscamos el libro en el arraylist y lo pasamos a la clase libros al metodo PrestadoOno
+                            int id = sc.nextInt();
+                            if (id == 99) {
                                 break;
                             }
-                        }
 
-                    } while (opcion != 4);
-                    break;
+                            // Comprobar que el id esta en el ArrayList
+                            boolean encontrado = false;
+                            Iterator<Vinilos> ite2 = vinilos.iterator();
+                            while (ite2.hasNext()) {
+                                Vinilos vinilo = ite2.next();
+                                if (vinilo.getId() == id) {
+                                    encontrado = true;
+                                }
+                            }
+
+                            for (Vinilos vinilo : vinilos) {
+                                if (vinilo.getId() == id) {
+                                    System.out.println("El vinilo seleccionado es: " + vinilo.getNombre());
+                                    System.out.println("El vinilo tiene " + vinilo.getCanciones() + " canciones");
+                                    System.out.println("El vinilo salio a la venta el dia: " + vinilo.getFechaLanzamiento());
+
+                                    int numeroEscape = 0;
+                                    do {
+                                        System.out.println("Quieres ver prestar el vinilo? (1. Si, 2. No)");
+                                        int opcion2 = sc.nextInt();
+                                        if (opcion2 == 1) {
+                                            vinilo.Prestar(vinilo.getId(), vinilos);
+                                            System.out.println("Pulsa cualquier tecla para continuar");
+                                            sc.nextLine();
+                                            numeroEscape = 1;
+                                        } else if (opcion2 == 2) {
+                                            System.out.println("No se ha realizado ninguna accion");
+                                            numeroEscape = 1;
+                                        }
+                                    } while (numeroEscape == 0);
+                                    break;
+                                }
+                            }
+
+                        } while (opcion != 4);
+                        break;
                     } else {
                         System.out.println("Usuario o contraseña incorrectos");
                         System.out.println("Pulsa cualquier tecla para continuar");
@@ -498,7 +513,7 @@ public class main {
                                             sc.nextLine();
                                             switch (opcion4) {
                                                 case 1:
-                                                    int opcion5=0;
+                                                    int opcion5 = 0;
                                                     do {
                                                         System.out.println("1. Añadir un nuevo cliente");
                                                         System.out.println("2. Modificar un cliente");
