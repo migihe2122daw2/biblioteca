@@ -1,4 +1,5 @@
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class main {
@@ -73,10 +74,15 @@ public class main {
         clienteEscuelaM.add(clienteEscola2);
         clienteEscuelaM.add(clienteEscola3);
 
+        // Crear trabajadores
+        ArrayList<Trabajador> trabajadores = new ArrayList<>();
+        Trabajador trabajadores1 = new Trabajador(1234, "Alberto", "de la Capital", "capitalalberto@gmail.com", "encarregat", "encarregat");
+
+
         // Swwitch case para el menu
 
         Scanner sc = new Scanner(System.in);
-        int opcion;
+        int opcion;z
         do {
 
             // Hacer login para acceder al menu
