@@ -11,10 +11,11 @@ public class PrestadoVinilo {
     private Calendar f_entrada;
     private Calendar f_devolucion;
     public String multa;
+    private Libros cantidad;
 
     // Constructor
 
-    public PrestadoVinilo(Vinilos nombre, Vinilos canciones, Vinilos id, Vinilos fechaLanzamieto, ClienteEscolaMusica nombreEscuela, Calendar f_entrada, Calendar f_devolucion, String multa) {
+    public PrestadoVinilo(Vinilos nombre, Vinilos canciones, Vinilos id, Vinilos fechaLanzamieto, ClienteEscolaMusica nombreEscuela, Calendar f_entrada, Calendar f_devolucion, String multa, Libros cantidad) {
         this.nombre = nombre;
         this.canciones = canciones;
         this.id = id;
@@ -23,6 +24,7 @@ public class PrestadoVinilo {
         this.f_entrada = f_entrada;
         this.f_devolucion = f_devolucion;
         this.multa = multa;
+        this.cantidad = cantidad;
     }
 
     // Getters y setters
@@ -49,6 +51,14 @@ public class PrestadoVinilo {
 
     public void setMulta(String multa) {
         this.multa = multa;
+    }
+
+    public Libros getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Libros cantidad) {
+        this.cantidad = cantidad;
     }
 
     // toString

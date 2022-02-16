@@ -1,5 +1,3 @@
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 public class ClientePrivado extends Cliente {
@@ -34,7 +32,7 @@ public class ClientePrivado extends Cliente {
     }
     ArrayList<Integer> libros = new ArrayList<>();
     // Guardar isbn del libro prestado
-    public void guardarLibro(@NotNull Libros libro){
+    public void guardarLibro(Libros libro){
         libros.add(libro.getIsbn());
         System.out.println("Libro guardado");
     }

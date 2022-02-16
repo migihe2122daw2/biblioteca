@@ -313,10 +313,41 @@ public class main {
 
                                     int numeroEscape = 0;
                                     do {
-                                        System.out.println("Quieres ver prestar el vinilo? (1. Si, 2. No)");
+                                        System.out.println("Quieres ver prestar o devolver vinilo? (1. Si, 2. No)");
                                         int opcion2 = sc.nextInt();
                                         if (opcion2 == 1) {
-                                            vinilo.Prestar(vinilo.getId(), vinilos);
+                                            System.out.println("\nQuieres prestar el libro(1) o devolverlo(2)?");
+                                            int opcion21 = sc.nextInt();
+                                            if ( opcion21 == 1){
+                                                String nombre = vinilo.Prestar(vinilo.getId(), vinilos, clienteEscuelaM);
+                                                sc.nextLine();
+
+                                                //Guardar el libro prestado en el metodo guardarLibro de ClientePrivado
+                                                for (ClienteEscolaMusica clienteEscola: clienteEscuelaM){
+                                                    if (clienteEscola.getNombre().equals(nombre)){
+                                                        clienteEscola.guardarVinilo(vinilo);
+                                                        System.out.println("Pulsa cualquier tecla para continuar");
+                                                        sc.nextLine();
+                                                        numeroEscape=1;
+                                                    }
+                                                }
+                                            }else if (opcion21 == 2){
+                                                System.out.println("\n Indica el isbn y el nombre del cliente que quiere devolver el libro");
+                                                System.out.println("ISBN: ");
+                                                int isbn22 = sc.nextInt();
+                                                sc.nextLine();
+                                                System.out.println("Nombre: ");
+                                                String nombre22 = sc.nextLine();
+                                                for(ClienteEscolaMusica clienteEscolaM: clienteEscuelaM){
+                                                    if (clienteEscolaM.getNombre().equals(nombre22)){
+                                                        clienteEscolaM.devolverLibro(isbn22);
+                                                        Vinilos.devolverVinilos(vinilos, isbn22);
+                                                        numeroEscape = 1;
+                                                    }
+                                                }
+                                            }
+
+
                                             System.out.println("Pulsa cualquier tecla para continuar");
                                             sc.nextLine();
                                             numeroEscape = 1;

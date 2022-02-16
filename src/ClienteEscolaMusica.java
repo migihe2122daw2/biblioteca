@@ -1,3 +1,7 @@
+
+
+import java.util.ArrayList;
+
 public class ClienteEscolaMusica extends Cliente {
 
     // Atributos
@@ -22,6 +26,10 @@ public class ClienteEscolaMusica extends Cliente {
         this.nombreEscuela = escuela9;
     }
 
+    public ClienteEscolaMusica(String nombre, String apellido, String dni, String nombreEscuela) {
+        super(nombre, apellido, dni);
+        this.nombreEscuela = nombreEscuela;
+    }
 
     // Getters y Setters
 
@@ -34,6 +42,26 @@ public class ClienteEscolaMusica extends Cliente {
     }
 
 
+    ArrayList<Integer> vinilos = new ArrayList<>();
+    //Guardar isbn del libro prestado
+    public void guardarVinilo(Vinilos vinilo){
+        vinilos.add(vinilo.getId());
+        System.out.println("Vinilos guardados");
+    }
+
+    //comparar isbn
+    public boolean comprobarVinilos(int id){
+        if(vinilos.contains(id)){
+            return true;
+        }
+        return false;
+    }
+
+    // Devolver libro
+    public Integer devolverVinilos(int id){
+        vinilos.removeIf(i -> i == id);
+            return null;
+    }
 
 }
 
