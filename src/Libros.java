@@ -224,6 +224,19 @@ public class Libros {
 
         return nombre;
 
+    }
+
+    // Devolver libro
+
+    public static void devolverLibros(ArrayList<Libros> libros, int isbnPrestado) {
+
+        // Buscar el libro con el isbn usando el metodo buscarLibro
+
+        Libros libro = buscarLibro(libros, isbnPrestado);
+
+        // Actualizar la cantidad del libro
+
+        libro.setCantidad(libro.getCantidad() + 1);
 
     }
 
@@ -232,7 +245,7 @@ public class Libros {
 
     }
 
-    public Libros buscarLibro(ArrayList<Libros> libros, int isbn) { // ESTO SERA UN POLIMORFISMO
+    public static Libros buscarLibro(ArrayList<Libros> libros, int isbn) { // ESTO SERA UN POLIMORFISMO
         for (int i = 0; i < libros.size(); i++) {
             if (libros.get(i).getIsbn() == isbn) {
                 // DEVOLVER EL LIBRO CON TODOS SUS DATOS EN FORMATO STRING

@@ -159,22 +159,43 @@ public class main {
                                         do {
 
                                             System.out.println("\nHay " + libro.getCantidad() + " libros disponibles");
-                                            System.out.println("Quieres prestar el libro? (1. Si, 2. No)");
+                                            System.out.println("Quieres prestar o devolver el libro? (1. Si, 2. No)");
                                             int opcion2 = sc.nextInt();
                                             if (opcion2 == 1) {
-                                                String nombre = libro.Prestar(libro.getIsbn(), libros, clientesPrivados);
-                                                sc.nextLine();
-                                                // Leer valor de la variable de retorno del metodo Prestar
 
-                                                // Guardar el libro prestado en el metodo guardarLibro de ClientePrivado
-                                                for (ClientePrivado clientePrivado : clientesPrivados) {
-                                                    if (clientePrivado.getNombre().equals(nombre)) {
-                                                        clientePrivado.guardarLibro(libro);
+                                                System.out.println("\nQuieres prestar el libro(1) o devolverlo(2)?");
+                                                int opcion21 = sc.nextInt();
+                                                if (opcion21 == 1) {
+                                                    String nombre = libro.Prestar(libro.getIsbn(), libros, clientesPrivados);
+                                                    sc.nextLine();
+                                                    // Leer valor de la variable de retorno del metodo Prestar
+
+                                                    // Guardar el libro prestado en el metodo guardarLibro de ClientePrivado
+                                                    for (ClientePrivado clientePrivado : clientesPrivados) {
+                                                        if (clientePrivado.getNombre().equals(nombre)) {
+                                                            clientePrivado.guardarLibro(libro);
+                                                            System.out.println("Pulsa cualquier tecla para continuar");
+                                                            sc.nextLine();
+                                                            numeroEscape = 1;
+                                                        }
                                                     }
+                                                } else if (opcion21 == 2) {
+                                                    System.out.println("\nIndica el isbn y el nombre del cliente que quiere devolver el libro");
+                                                    System.out.println("ISBN: ");
+                                                    int isbn22 = sc.nextInt();
+                                                    sc.nextLine();
+                                                    System.out.println("Nombre: ");
+                                                    String nombre22 = sc.nextLine();
+                                                    for (ClientePrivado clientePrivado : clientesPrivados) {
+                                                        if (clientePrivado.getNombre().equals(nombre22)) {
+                                                            clientePrivado.devolverLibro(isbn22);
+                                                            Libros.devolverLibros(libros, isbn22);
+                                                            numeroEscape = 1;
+                                                        }
+                                                    }
+
                                                 }
-                                                System.out.println("Pulsa cualquier tecla para continuar");
-                                                sc.nextLine();
-                                                numeroEscape = 1;
+
                                             } else if (opcion2 == 2) {
                                                 int numeroEscape2 = 0;
                                                 do {
@@ -200,14 +221,24 @@ public class main {
                                         // Decir quien tiene los libros prestados, mirar en el arraylist clientesPrivados
                                         for (ClientePrivado clientesPrivado : clientesPrivados) {
                                             if (clientesPrivado.comprobarLibro(isbn)) {
-                                                System.out.println("El cliente " + clientesPrivado.getNombre() + " tiene el libro prestado");
+                                                System.out.println("Los libros se encuentran prestados por " + clientesPrivado.getNombre());
+
+                                                System.out.println("\nQuieres devolver el libro? (1. Si, 2. No)");
+                                                int opcion23 = sc.nextInt();
+                                                if (opcion23 == 1) {
+                                                    clientesPrivado.devolverLibro(isbn);
+                                                    Libros.devolverLibros(libros, isbn);
+                                                }
                                             }
 
                                         }
-                                        System.out.println("Pulsa cualquier tecla para continuar");
-                                        sc.nextLine();
+                                        break;
+
                                     }
-                                    }
+                                    sc.nextLine();
+                                    System.out.println("Pulsa cualquier tecla para continuar");
+                                    sc.nextLine();
+                                }
 
 
                             }

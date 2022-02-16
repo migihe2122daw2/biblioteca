@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class ClientePrivado extends Cliente {
@@ -18,10 +20,8 @@ public class ClientePrivado extends Cliente {
         super(nombre, apellido, dni);
     }
 
-    @Override
-    public Integer devolverLibro(int isbn) {
-        return null;
-    }
+
+
 
     // Getters y Setters
 
@@ -34,7 +34,7 @@ public class ClientePrivado extends Cliente {
     }
     ArrayList<Integer> libros = new ArrayList<>();
     // Guardar isbn del libro prestado
-    public void guardarLibro(Libros libro){
+    public void guardarLibro(@NotNull Libros libro){
         libros.add(libro.getIsbn());
         System.out.println("Libro guardado");
     }
@@ -45,6 +45,13 @@ public class ClientePrivado extends Cliente {
             return true;
         }
         return false;
+    }
+
+    // Devolver libro
+
+    public Integer devolverLibro(int isbn){
+        libros.removeIf(i -> i == isbn);
+        return null;
     }
 
 
