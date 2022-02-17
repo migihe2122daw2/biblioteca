@@ -7,6 +7,10 @@ public class PrestadoLibro {
     private ClientePrivado CodigoPostal;
     private ClientePrivado Nombre;
     private Libros titol;
+    private String titolS;
+    private int isbnI;
+    private String autorS;
+    private int cantidadI;
     private Libros isbn;
     private Libros autor;
     private Libros cantidad;
@@ -33,11 +37,17 @@ public class PrestadoLibro {
     }
 
 
+
     //getters y setters
 
 
-    public ClientePrivado getCodigoPostal() {
-        return CodigoPostal;
+
+
+    public PrestadoLibro(String titulo, String autor, int isbn, int cantidad) {
+        this.titolS = titulo;
+        this.autorS = autor;
+        this.isbnI = isbn;
+        this.cantidadI = cantidad;
     }
 
     public void setCodigoPostal(ClientePrivado codigoPostal) {

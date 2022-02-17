@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Trabajador extends Usuario{
 
     public String dni;
@@ -26,6 +28,14 @@ public class Trabajador extends Usuario{
         this.usuario = usuario;
         this.password = password;
     }
+
+    public Trabajador(String nombre, String apellido, String dni, String email) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.email = email;
+    }
+
 
 
 
@@ -78,6 +88,9 @@ public class Trabajador extends Usuario{
     public void setPassword(){
         this.password = password;
     }
+
+
+
 }
 
     // Metodos

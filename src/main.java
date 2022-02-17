@@ -85,6 +85,12 @@ public class main {
         trabajadores.add(trabajadores2);
         trabajadores.add(trabajadores3);
 
+        // Crear prestamos
+
+        ArrayList<PrestadoLibro> prestamosLibros = new ArrayList<>();
+        ArrayList<PrestadoVinilo> prestamosVinilos = new ArrayList<>();
+
+
         // Swwitch case para el menu
 
         Scanner sc = new Scanner(System.in);
@@ -166,6 +172,9 @@ public class main {
                                                 System.out.println("\nQuieres prestar el libro(1) o devolverlo(2)?");
                                                 int opcion21 = sc.nextInt();
                                                 if (opcion21 == 1) {
+                                                    // Prestar libro
+
+
                                                     String nombre = libro.Prestar(libro.getIsbn(), libros, clientesPrivados);
                                                     sc.nextLine();
                                                     // Leer valor de la variable de retorno del metodo Prestar
@@ -311,7 +320,7 @@ public class main {
                                     System.out.println("El vinilo tiene " + vinilo.getCanciones() + " canciones");
                                     System.out.println("El vinilo salio a la venta el dia: " + vinilo.getFechaLanzamiento());
 
-                                    if (vinilo.getCantidad() >= 1){
+                                    if (vinilo.getCantidad() >= 1) {
                                         int numeroEscape = 0;
                                         do {
                                             System.out.println("\nHay" + vinilo.getCantidad() + "vinilos disponibles");
@@ -387,14 +396,14 @@ public class main {
                                     System.out.println("Pulsa cualquier tecla para continuar");
                                     sc.nextLine();
                                 }
-                                    }
+                            }
 
-                        if (encontradoE == false) {
-                            System.out.println("El id no existe");
-                            System.out.println("Pulsa cualquier tecla para continuar");
-                            sc.nextLine();
-                            sc.nextLine();
-                        }
+                            if (encontradoE == false) {
+                                System.out.println("El id no existe");
+                                System.out.println("Pulsa cualquier tecla para continuar");
+                                sc.nextLine();
+                                sc.nextLine();
+                            }
 
                         } while (opcion != 4);
                         break;
@@ -440,8 +449,7 @@ public class main {
                                 System.out.println("2. Gestión discos de vinilo: ");
                                 System.out.println("3. Gestión de clientes: ");
                                 System.out.println("4. Gestión de trabajadores: ");
-                                System.out.println("5. Gestión de prestamos: ");
-                                System.out.println("6. Salir");
+                                System.out.println("5. Salir");
 
                                 opcion = sc.nextInt();
                                 sc.nextLine();
@@ -778,17 +786,87 @@ public class main {
                                         } while (opcion4 != 3);
                                         break;
                                     case 4:
+                                        int opcion8;
+                                        do {
+                                            System.out.println("Indica que quieres hacer: ");
+                                            System.out.println("1. Añadir un nuevo trabajador");
+                                            System.out.println("2. Eliminar un trabajador");
+                                            System.out.println("3. Modificar un trabajador");
+                                            System.out.println("4. Consultar un trabajador");
+                                            System.out.println("5. Salir");
+                                            opcion8 = sc.nextInt();
+                                            sc.nextLine();
+
+                                            switch (opcion8) {
+                                                case 1:
+                                                    System.out.println("Introduce el nombre del trabajador: ");
+                                                    String nombre0 = sc.nextLine();
+                                                    System.out.println("Introduce los apellidos del trabajador: ");
+                                                    String apellidos0 = sc.nextLine();
+                                                    System.out.println("Introduce el DNI del trabajor: ");
+                                                    String dni0 = sc.nextLine();
+                                                    System.out.println("Introduce el email del trabajor: ");
+                                                    String email0 = sc.nextLine();
+
+                                                    Trabajador trabajadorNuevo = new Trabajador(nombre0, apellidos0, dni0, email0);
+                                                    trabajadores.add(trabajadorNuevo);
+                                                    break;
+                                                case 2:
+                                                    System.out.println("Introduce el DNI del trabajador que quieres eliminar: ");
+                                                    String dni8 = sc.nextLine();
+                                                    for (Trabajador trabajadorEliminar : trabajadores) {
+                                                        if (trabajadorEliminar.getDni().equals(dni8)) {
+                                                            trabajadores.removeIf(trabajadorEliminar1 -> trabajadorEliminar1.getDni() == dni8);
+
+                                                        }
+                                                    }
+                                                    break;
+                                                case 3:
+                                                    System.out.println("Introduce el DNI del trabajador que quieres modificar: ");
+                                                    String dni9 = sc.nextLine();
+                                                    for (Trabajador trabajadorModificar : trabajadores) {
+                                                        if (trabajadorModificar.getDni().equals(dni9)) {
+                                                            System.out.println("Introduce el nuevo nombre del trabajador: ");
+                                                            String nombreM = sc.nextLine();
+                                                            System.out.println("Introduce los nuevos apellidos del trabajador: ");
+                                                            String apellidosM = sc.nextLine();
+                                                            System.out.println("Introduce el nuevo email del trabajador: ");
+                                                            String emailM = sc.nextLine();
+
+                                                            trabajadorModificar.setNombre(nombreM);
+                                                            trabajadorModificar.setApellido(apellidosM);
+                                                            trabajadorModificar.setEmail(emailM);
+                                                        }
+                                                    }
+                                                    break;
+                                                case 4:
+                                                    System.out.println("Introduce el DNI del trabajador que quieres buscar: ");
+                                                    String dniG = sc.nextLine();
+                                                    for (Trabajador trabajadorG : trabajadores){
+                                                        if (trabajadorG.getDni().equals(dniG)){
+                                                            System.out.println("Nombre: " + trabajadorG.getNombre());
+                                                            System.out.println("Apellidos: " + trabajadorG.getApellido());
+                                                            System.out.println("Email: " + trabajadorG.getEmail());
+                                                            System.out.println("Dni: " + trabajadorG.getDni());
+                                                        }
+                                                    }
+                                                    break;
+                                                case 5:
+                                                    break;
+                                                default:
+                                                    System.out.println("Opcion incorrecta");
+                                                    break;
+                                            }
+
+                                        } while (opcion8 != 5);
                                         break;
                                     case 5:
-                                        break;
-                                    case 6:
-                                        oportunidades = 0;
                                         break;
                                     default:
                                         System.out.println("Introduce una opción correcta");
                                         break;
                                 }
-                            } while (opcion != 6);
+                            } while (opcion != 5);
                         }
                     } while (oportunidades != 0);
                 case 4:
@@ -796,7 +874,6 @@ public class main {
                 default:
                     System.out.println("Introduce una opción correcta");
                     break;
-
             }
         } while (opcion != 4);
     }
