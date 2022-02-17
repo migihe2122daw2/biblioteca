@@ -38,11 +38,11 @@ public class main {
         // Creamos los vinilos
         ArrayList<Vinilos> vinilos = new ArrayList<Vinilos>();
 
-        Vinilos vinilos1 = new Vinilos("Fine line", 12, 01, "03/05/2018");
-        Vinilos vinilos2 = new Vinilos("evermore", 10, 02, "20/05/2012");
-        Vinilos vinilos3 = new Vinilos("Nevermind", 12, 03, "08/03/1991");
-        Vinilos vinilos4 = new Vinilos("The doors", 11, 04, "19/10/2010");
-        Vinilos vinilos5 = new Vinilos("Morrison Hotel", 11, 05, "21/09/2015");
+        Vinilos vinilos1 = new Vinilos("Fine line", 12, 01, "03/05/2018", 9);
+        Vinilos vinilos2 = new Vinilos("evermore", 10, 02, "20/05/2012", 1);
+        Vinilos vinilos3 = new Vinilos("Nevermind", 12, 03, "08/03/1991", 9);
+        Vinilos vinilos4 = new Vinilos("The doors", 11, 04, "19/10/2010", 10);
+        Vinilos vinilos5 = new Vinilos("Morrison Hotel", 11, 05, "21/09/2015", 4);
 
         vinilos.add(vinilos1);
         vinilos.add(vinilos2);
@@ -296,12 +296,12 @@ public class main {
                             }
 
                             // Comprobar que el id esta en el ArrayList
-                            boolean encontrado = false;
+                            boolean encontrado1 = false;
                             Iterator<Vinilos> ite2 = vinilos.iterator();
                             while (ite2.hasNext()) {
                                 Vinilos vinilo = ite2.next();
                                 if (vinilo.getId() == id) {
-                                    encontrado = true;
+                                    encontrado1 = true;
                                 }
                             }
 
@@ -311,54 +311,90 @@ public class main {
                                     System.out.println("El vinilo tiene " + vinilo.getCanciones() + " canciones");
                                     System.out.println("El vinilo salio a la venta el dia: " + vinilo.getFechaLanzamiento());
 
-                                    int numeroEscape = 0;
-                                    do {
-                                        System.out.println("Quieres ver prestar o devolver vinilo? (1. Si, 2. No)");
-                                        int opcion2 = sc.nextInt();
-                                        if (opcion2 == 1) {
-                                            System.out.println("\nQuieres prestar el libro(1) o devolverlo(2)?");
-                                            int opcion21 = sc.nextInt();
-                                            if ( opcion21 == 1){
-                                                String nombre = vinilo.Prestar(vinilo.getId(), vinilos, clienteEscuelaM);
-                                                sc.nextLine();
+                                    if (vinilo.getCantidad() >= 1){
+                                        int numeroEscape = 0;
+                                        do {
+                                            System.out.println("\nHay" + vinilo.getCantidad() + "vinilos disponibles");
+                                            System.out.println("Quieres ver prestar o devolver vinilo? (1. Si, 2. No)");
+                                            int opcion2 = sc.nextInt();
+                                            if (opcion2 == 1) {
+                                                System.out.println("\nQuieres prestar el libro(1) o devolverlo(2)?");
+                                                int opcion21 = sc.nextInt();
+                                                if (opcion21 == 1) {
+                                                    String nombre = vinilo.Prestar(vinilo.getId(), vinilos, clienteEscuelaM);
+                                                    sc.nextLine();
 
-                                                //Guardar el libro prestado en el metodo guardarLibro de ClientePrivado
-                                                for (ClienteEscolaMusica clienteEscola: clienteEscuelaM){
-                                                    if (clienteEscola.getNombre().equals(nombre)){
-                                                        clienteEscola.guardarVinilo(vinilo);
-                                                        System.out.println("Pulsa cualquier tecla para continuar");
-                                                        sc.nextLine();
-                                                        numeroEscape=1;
+                                                    //Guardar el libro prestado en el metodo guardarLibro de ClientePrivado
+                                                    for (ClienteEscolaMusica clienteEscola : clienteEscuelaM) {
+                                                        if (clienteEscola.getNombre().equals(nombre)) {
+                                                            clienteEscola.guardarVinilo(vinilo);
+                                                            System.out.println("Pulsa cualquier tecla para continuar");
+                                                            sc.nextLine();
+                                                            numeroEscape = 1;
+                                                        }
+                                                    }
+                                                } else if (opcion21 == 2) {
+                                                    System.out.println("\n Indica el isbn y el nombre del cliente que quiere devolver el libro");
+                                                    System.out.println("ISBN: ");
+                                                    int isbn22 = sc.nextInt();
+                                                    sc.nextLine();
+                                                    System.out.println("Nombre: ");
+                                                    String nombre22 = sc.nextLine();
+                                                    for (ClienteEscolaMusica clienteEscolaM : clienteEscuelaM) {
+                                                        if (clienteEscolaM.getNombre().equals(nombre22)) {
+                                                            clienteEscolaM.devolverLibro(isbn22);
+                                                            Vinilos.devolverVinilos(vinilos, isbn22);
+                                                            numeroEscape = 1;
+                                                        }
                                                     }
                                                 }
-                                            }else if (opcion21 == 2){
-                                                System.out.println("\n Indica el isbn y el nombre del cliente que quiere devolver el libro");
-                                                System.out.println("ISBN: ");
-                                                int isbn22 = sc.nextInt();
-                                                sc.nextLine();
-                                                System.out.println("Nombre: ");
-                                                String nombre22 = sc.nextLine();
-                                                for(ClienteEscolaMusica clienteEscolaM: clienteEscuelaM){
-                                                    if (clienteEscolaM.getNombre().equals(nombre22)){
-                                                        clienteEscolaM.devolverLibro(isbn22);
-                                                        Vinilos.devolverVinilos(vinilos, isbn22);
-                                                        numeroEscape = 1;
+                                            } else if (opcion2 == 2) {
+                                                int numeroEscape3 = 0;
+                                                do {
+                                                    System.out.println("Quieres comprar el libro? (1.Si, 2.No)");
+                                                    int opcion3 = sc.nextInt();
+                                                    if (opcion3 == 1) {
+                                                        vinilo.Comprar(vinilo.getId(), vinilos);
+                                                    } else if (opcion3 == 2) {
+                                                        System.out.println("No se ha realizado ninguna acción");
+                                                        numeroEscape3 = 1;
+
                                                     }
-                                                }
+                                                } while (numeroEscape3 == 0);
+                                                numeroEscape = 1;
                                             }
 
+                                        } while (numeroEscape == 0);
+                                        break;
+                                    } else if (vinilo.getCantidad() == 0) {
+                                        System.out.println("No hay vinilos disponibles");
+                                        //Decir quien tiene los vinilos prestados, mirar en el arraylist ClientesMusica
+                                        for (ClienteEscolaMusica clienteEscolaMus : clienteEscuelaM) {
+                                            if (clienteEscolaMus.comprobarVinilos(id)) {
+                                                System.out.println("Los libros se encuentran prestados por" + clienteEscolaMus.getNombre());
 
-                                            System.out.println("Pulsa cualquier tecla para continuar");
-                                            sc.nextLine();
-                                            numeroEscape = 1;
-                                        } else if (opcion2 == 2) {
-                                            System.out.println("No se ha realizado ninguna accion");
-                                            numeroEscape = 1;
+                                                System.out.println("\n Quieres devolver el libro (1.Si, 2.No)");
+                                                int opcion24 = sc.nextInt();
+                                                if (opcion24 == 1) {
+                                                    clienteEscolaMus.devolverLibro(id);
+                                                    Vinilos.devolverVinilos(vinilos, id);
+                                                }
+                                            }
                                         }
-                                    } while (numeroEscape == 0);
-                                    break;
+                                        break;
+                                    }
+                                    sc.nextLine();
+                                    System.out.println("Pulsa cualquier tecla para continuar");
+                                    sc.nextLine();
                                 }
-                            }
+                                    }
+
+                        if (encontradoE == false) {
+                            System.out.println("El id no existe");
+                            System.out.println("Pulsa cualquier tecla para continuar");
+                            sc.nextLine();
+                            sc.nextLine();
+                        }
 
                         } while (opcion != 4);
                         break;

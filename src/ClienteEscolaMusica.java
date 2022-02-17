@@ -31,6 +31,10 @@ public class ClienteEscolaMusica extends Cliente {
         this.nombreEscuela = nombreEscuela;
     }
 
+    public ClienteEscolaMusica(String nombre, String apellido, String dni) {
+        super(nombre, apellido, dni);
+    }
+
     // Getters y Setters
 
     public String getNombreEscuela() {
