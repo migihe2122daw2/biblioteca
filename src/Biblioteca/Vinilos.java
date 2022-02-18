@@ -125,7 +125,7 @@ public class Vinilos {
                 System.out.println("Fecha de prestamo:" + dia + "/" + mes + "/" + anio);
                 // Buscar el vinilo con metodo buscarVinilo
 
-                Vinilos vinilo = buscarVinilo(vinilos, id);
+                Vinilos vinilo = buscar(vinilos, id);
 
                 // Mostrar datos del vinilo
 
@@ -169,7 +169,7 @@ public class Vinilos {
                 System.out.println("Fecha de prestamo: "+ dia + "/" + mes + "/" + anio);
 
                 // Buscar el libro con el id usando el metodo buscarLibro
-                Vinilos vinilo = buscarVinilo(vinilos, id);
+                Vinilos vinilo = buscar(vinilos, id);
 
                 // Mostrar datos del libro
 
@@ -201,7 +201,7 @@ public class Vinilos {
 
     public static void devolverVinilos(ArrayList<Vinilos> vinilos, int idPrestado){
         //buscar el vinilo con el isbn usando el metodo buscarVinilo
-        Vinilos vinilo = buscarVinilo(vinilos, idPrestado);
+        Vinilos vinilo = buscar(vinilos, idPrestado);
 
         // Actualizar la cantidad del libro
 
@@ -211,7 +211,7 @@ public class Vinilos {
 
 
 
-    public static Vinilos buscarVinilo(ArrayList<Vinilos> vinilos, int id){
+    public static Vinilos buscar(ArrayList<Vinilos> vinilos, int id){
         for (int i = 0; i < vinilos.size(); i++){
             if (vinilos.get(i).getId() == id){
                 return vinilos.get(i);

@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.*;
 
-public class Libros {
+public class Libros<tematica> {
     private static String titulo;
-    protected Genero tematica;
+    protected tematica tematica;
 
     // Atributos
 
@@ -31,6 +31,10 @@ public class Libros {
         this.isbn = isbn;
         this.cantidad = cantidad;
         this.precio = precio;
+    }
+
+    public Libros(tematica tematica) {
+        this.tematica = tematica;
     }
 
     public static String getTitulo(int isbn) {
@@ -134,7 +138,7 @@ public class Libros {
 
                 // Buscar el libro con el isbn usando el metodo buscarLibro
 
-                Libros libro = buscarLibro(libros, isbnPrestado);
+                Libros libro = buscar(libros, isbnPrestado);
 
                 // Mostrar datos del libro
 
@@ -187,7 +191,7 @@ public class Libros {
 
                 // Buscar el libro con el isbn usando el metodo buscarLibro
 
-                Libros libro = buscarLibro(libros, isbnPrestado);
+                Libros libro = buscar(libros, isbnPrestado);
 
                 // Mostrar datos del libro
 
@@ -234,7 +238,7 @@ public class Libros {
 
         // Buscar el libro con el isbn usando el metodo buscarLibro
 
-        Libros libro = buscarLibro(libros, isbnPrestado);
+        Libros libro = buscar(libros, isbnPrestado);
 
         // Actualizar la cantidad del libro
 
@@ -247,7 +251,8 @@ public class Libros {
 
     }
 
-    public static Libros buscarLibro(ArrayList<Libros> libros, int isbn) { // ESTO SERA UN POLIMORFISMO
+    public static Libros buscar(ArrayList<Libros> libros, int isbn) { // el metodo buscarLibro recibe un arraylist de libros y un isbn,
+        // es un polimorfismo
         for (int i = 0; i < libros.size(); i++) {
             if (libros.get(i).getIsbn() == isbn) {
                 // DEVOLVER EL LIBRO CON TODOS SUS DATOS EN FORMATO STRING
@@ -255,6 +260,19 @@ public class Libros {
             }
         }
         return null;
+    }
+
+    public static void clonar(ArrayList<Libros> libros, int isbn, int cantidad) throws CloneNotSupportedException {
+        // Comprobar que el libro no existe
+        boolean existe = false;
+        for (Libros libro : libros) {
+            if (libro.getIsbn() == isbn) {
+                existe = true;
+                // Clonar el libro existente con el metodo clone
+                Libros libroClonado = (Libros) libro.clone();
+                libroClonado.setCantidad(libroClonado.getCantidad() + cantidad);
+            }
+        }
     }
 
 }

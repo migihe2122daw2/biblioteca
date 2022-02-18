@@ -5,7 +5,7 @@ import java.util.*;
 
 public class main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
 
         // Main class for all the biblio-related stuff
 
@@ -50,10 +50,11 @@ public class main {
         vinilos.add(vinilos4);
         vinilos.add(vinilos5);
 
-        // Crear usuario administrador
-        ArrayList<Administrador> administradores = new ArrayList<Administrador>();
-        Administrador admin1 = new Administrador("admin", "admin");
-        administradores.add(admin1);
+        // Crear usuario administrador en un array estatico
+        Administrador admin1[] = new Administrador[1];
+        admin1[0] = new Administrador("admin", "admin");
+
+
 
         // Crear cliente Privado
         ArrayList<ClientePrivado> clientesPrivados = new ArrayList<ClientePrivado>();
@@ -112,12 +113,13 @@ public class main {
                     System.out.println("Introduce tu nombre de usuario: ");
                     String usuarioP = sc.next();
                     System.out.println("Introduce tu contraseña: ");
-                    String contraseñaP = sc.next();
+                    String contrasenaP = sc.next();
 
                     // Comprobar que el usuario y contraseña son correctos
                     boolean correcto = false;
                     for (Trabajador trabajador : trabajadores) {
-                        if (trabajador.getUsuario().equals(usuarioP) && trabajador.getPassword().equals(contraseñaP)) {
+                        // todo compareTo
+                        if (trabajador.getUsuario().compareTo(usuarioP) == 0 && trabajador.getPassword().compareTo(contrasenaP) == 0) {
                             correcto = true;
                             break;
                         }
@@ -422,12 +424,12 @@ public class main {
                         sc.nextLine();
                         String usuario = sc.nextLine();
                         System.out.println("Introduce tu contraseña: ");
-                        String contraseña = sc.nextLine();
+                        String contrasena1 = sc.nextLine();
 
                         // Comprobar que el usuario y contraseña son correctos
                         boolean encontrado = false;
-                        for (Administrador admin : administradores) {
-                            if (admin.getUsuario().equals(usuario) && admin.getContra().equals(contraseña)) {
+                        for (int i = 0; i < admin1.length; i++) {
+                            if (admin1[i].getUsuario().equals(usuario) && admin1[i].getContra().equals(contrasena1)) {
                                 encontrado = true;
                             }
                         }
@@ -481,6 +483,8 @@ public class main {
                                                     System.out.println("Introduce el precio del libro: ");
                                                     int precio = sc.nextInt();
                                                     sc.nextLine();
+                                                    // TODO: CLONAR LIBRO
+                                                    Libros.clonar(libros, isbn, cantidad);
 
                                                     libros.add(new Libros(titulo, autor, isbn, cantidad, precio));
                                                     break;
@@ -866,9 +870,11 @@ public class main {
                                         System.out.println("Introduce una opción correcta");
                                         break;
                                 }
+                                break;
                             } while (opcion != 5);
                         }
-                    } while (oportunidades != 0);
+                    } while (oportunidades != 0 && opcion != 5);
+                    break;
                 case 4:
                     break;
                 default:
@@ -877,4 +883,6 @@ public class main {
             }
         } while (opcion != 4);
     }
+
+
 }

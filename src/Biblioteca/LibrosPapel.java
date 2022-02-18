@@ -1,6 +1,6 @@
 package Biblioteca;
-
-public class LibrosPapel extends Libros {
+// todo: herencia multiple
+public class LibrosPapel extends Libros implements Biblioteca{
 
     // Atributos
 
