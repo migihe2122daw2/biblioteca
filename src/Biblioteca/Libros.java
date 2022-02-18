@@ -17,6 +17,16 @@ public class Libros<tematica> {
 
     // Constructor
 
+    /**
+     *
+     * @param titulo
+     * @param autor
+     * @param isbn
+     * @param cantidad
+     * @param precio
+     *
+     * Metodo para crear un libro
+     */
     public Libros(String titulo, String autor, int isbn, int cantidad, int precio) {
         this.titulo = titulo;
         this.autor = autor;
@@ -24,6 +34,7 @@ public class Libros<tematica> {
         this.cantidad = cantidad;
         this.precio = precio;
     }
+
 
     public Libros() {
         this.titulo = titulo;
@@ -85,22 +96,19 @@ public class Libros<tematica> {
 
     //metodos
 
-    public int PrestadoOno(ArrayList<Libros> libros) {
-        // Saber si el libro esta prestado o no
-
-        if (cantidad == 0) {
-            System.out.println("Todos los libros con el titulo " + titulo + " estan prestados");
-        } else {
-            System.out.println("Todos los libros con el titulo " + titulo + " estan disponibles");
-
-            return cantidad;
-        }
-        return 0;
-    }
-
     public void devolverPrestado() {
         System.out.println("El vinilo se ha devuelto");
     }
+
+    /**
+     *
+     * @param isbnPrestado
+     * @param libros
+     * @param clientePrivados
+     * @return
+     *
+     * Metodo para prestar un libro
+     */
 
     public String Prestar(int isbnPrestado, ArrayList<Libros> libros, ArrayList<ClientePrivado> clientePrivados) {
 
@@ -234,6 +242,12 @@ public class Libros<tematica> {
 
     // Devolver libro
 
+    /**
+     * Metodo que devuelve un libro
+     * @param libros
+     * @param isbnPrestado
+     */
+
     public static void devolverLibros(ArrayList<Libros> libros, int isbnPrestado) {
 
         // Buscar el libro con el isbn usando el metodo buscarLibro
@@ -251,6 +265,12 @@ public class Libros<tematica> {
 
     }
 
+    /**
+     * Metodo que busca un libro
+     * @param libros
+     * @param isbn
+     * @return
+     */
     public static Libros buscar(ArrayList<Libros> libros, int isbn) { // el metodo buscarLibro recibe un arraylist de libros y un isbn,
         // es un polimorfismo
         for (int i = 0; i < libros.size(); i++) {
@@ -261,6 +281,14 @@ public class Libros<tematica> {
         }
         return null;
     }
+
+    /**
+     * Metodo que muestra los libros
+     * @param libros
+     * @param isbn
+     * @param cantidad
+     * @throws CloneNotSupportedException
+     */
 
     public static void clonar(ArrayList<Libros> libros, int isbn, int cantidad) throws CloneNotSupportedException {
         // Comprobar que el libro no existe

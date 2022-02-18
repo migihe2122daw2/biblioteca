@@ -36,12 +36,23 @@ public class ClientePrivado extends Cliente {
     }
     ArrayList<Integer> libros = new ArrayList<>();
     // Guardar isbn del libro prestado
+
+    /**
+     * Metodo que devuelve una cadena con los datos del cliente
+     * @param libro
+     */
     public void guardarLibro(@NotNull Libros libro){
         libros.add(libro.getIsbn());
         System.out.println("Libro guardado");
     }
 
     // Comparar isbn
+
+    /**
+     * Metodo que devuelve una cadena con los datos del cliente
+     * @param isbn
+     * @return
+     */
     public boolean comprobarLibro(int isbn){
         if(libros.contains(isbn)){
             return true;
@@ -51,6 +62,11 @@ public class ClientePrivado extends Cliente {
 
     // Devolver libro
 
+    /**
+     * Metodo que devuelve una cadena con los datos del cliente
+     * @param isbn
+     * @return
+     */
     public Integer devolverLibro(int isbn){
         libros.removeIf(i -> i == isbn);
         return null;

@@ -45,7 +45,9 @@ public class ClienteEscolaMusica extends Cliente {
         this.nombreEscuela = nombreEscuela;
     }
 
-
+    /**
+     * Metodo que devuelve una lista de libros que tiene el cliente
+     */
     ArrayList<Integer> vinilos = new ArrayList<>();
     //Guardar isbn del libro prestado
     public void guardarVinilo(Vinilos vinilo){
@@ -54,6 +56,12 @@ public class ClienteEscolaMusica extends Cliente {
     }
 
     //comparar isbn
+
+    /**
+     * Metodo que devuelve una lista de libros que tiene el cliente
+     * @param id
+     * @return
+     */
     public boolean comprobarVinilos(int id){
         if(vinilos.contains(id)){
             return true;

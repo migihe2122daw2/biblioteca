@@ -5,6 +5,11 @@ import java.util.*;
 
 public class main {
 
+    /**
+     * @param args the command line arguments
+     * @param args
+     * @throws CloneNotSupportedException
+     */
     public static void main(String[] args) throws CloneNotSupportedException {
 
         // Main class for all the biblio-related stuff
