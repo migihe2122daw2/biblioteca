@@ -1,3 +1,5 @@
+package Biblioteca;
+
 public class Web {
     //atributos
     private String nombreWeb;

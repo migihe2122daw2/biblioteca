@@ -1,3 +1,5 @@
+package Biblioteca;
+
 public class LibrosPapel extends Libros {
 
     // Atributos

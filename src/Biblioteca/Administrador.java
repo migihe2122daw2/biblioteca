@@ -1,3 +1,5 @@
+package Biblioteca;
+
 public class Administrador extends Usuario {
 
     public String usuario = "admin";

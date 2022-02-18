@@ -1,4 +1,6 @@
- enum Genero {
+package Biblioteca;
+
+enum Genero {
 
     AVENTURA,
     CIENCIA_FICCION,

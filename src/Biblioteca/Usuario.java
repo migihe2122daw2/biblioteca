@@ -1,3 +1,5 @@
+package Biblioteca;
+
 public abstract class Usuario {
 
     public String dni;
